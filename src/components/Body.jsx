@@ -1,12 +1,42 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Login from "./Login";
 import Browse from "./Browse";
-import { Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { useDispatch } from "react-redux";
+import { addUser, removeUser } from "../utils/userSlice";
 
 const Body = () => {
-    return <div>
-        <Outlet />
-    </div>
-}
+  const dispatch = useDispatch();
+  const appRouter = createBrowserRouter([
+    {
+      path: "/",
+      element: <Login />,
+    },
+    {
+      path: "/browse",
+      element: <Browse />,
+    },
+  ]);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+        const { uid, email, displayName, photoURL } = user;
+        dispatch(addUser({ uid, email, displayName, photoURL }));
+        // console.log("User is Signed In");
+      } else {
+        // User is signed out
+        dispatch(removeUser());
+        // console.log("User is Signed Out");
+      }
+    });
+  }, []);
+
+  return <RouterProvider router={appRouter} />;
+};
 
 export default Body;
