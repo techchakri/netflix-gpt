@@ -91,6 +91,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 - Implemented Sign out
 - Update Profile
 - Bug Fix in displayName,photoURL in Login Page
+- Fetch from TMDB Movies
 
 
 # Features
