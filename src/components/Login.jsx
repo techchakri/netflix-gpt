@@ -94,12 +94,13 @@ const Login = () => {
       <Header />
       <div className="absolute">
         <img
+          className="h-screen w-screen object-cover"
           src={BG_IMG}
           alt="background-image"
         />
       </div>
-      <form className="w-3/12 absolute p-12 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80">
-        <h1 className=" font-semibold text-3xl py-4">
+      <form className="w-3/4 md:w-5/12 lg:w-3/12 absolute p-12 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80">
+        <h1 className=" font-semibold text-xl md:text-3xl py-4">
           {isSignInForm ? "Sign In" : "Sign Up"}
         </h1>
         {!isSignInForm && (
@@ -107,30 +108,30 @@ const Login = () => {
             ref={name}
             type="text"
             placeholder="Full Name"
-            className="p-3 my-3 w-full bg-gray-600"
+            className="p-2 my-2 md:p-3 md:my-3 w-3/4 md:w-full bg-gray-600"
           />
         )}
         <input
           ref={email}
           type="text"
           placeholder="Email Address"
-          className="p-3 my-3 w-full bg-gray-600"
+          className="p-2 my-2 md:p-3 md:my-3 w-3/4 md:w-full bg-gray-600"
         />
         <input
           ref={password}
           type="password"
           placeholder="Password"
-          className="p-3 my-3 w-full bg-gray-600"
+          className="p-2 my-2 md:p-3 md:my-3 w-3/4 md:w-full bg-gray-600"
         />
         {errorMessage && (
-          <p className="text-red-500 font-semibold text-lg py-2">
+          <p className="text-red-500 font-semibold text-base md:text-lg py-1 md:py-2">
             {errorMessage}
           </p>
         )}
 
         <button
           onClick={handleButtonClick}
-          className="p-3 my-6 bg-red-700 w-full rounded-lg"
+          className="p-2 my-3 md:p-3 md:my-6 bg-red-700 w-1/2 md:w-full rounded-lg"
         >
           {isSignInForm ? "Sign In" : "Sign Up"}
         </button>
